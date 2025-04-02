@@ -14,6 +14,12 @@
         <RouterLink :to="'/about2'" class="hover:text-lime-500"
           >About2</RouterLink
         >
+        <RouterLink :to="'/about2'" class="hover:text-lime-500"
+          >About3</RouterLink
+        >
+        <RouterLink :to="'/about2'" class="hover:text-lime-500"
+          >About4</RouterLink
+        >
       </div>
 
       <!-- Logout -->

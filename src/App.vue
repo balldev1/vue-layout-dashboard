@@ -17,7 +17,7 @@ import Navbar from "./components/layout/Navbar.vue";
     <!-- content -->
     <div class="pl-40 pt-14">
       <div class="bg-white text-lime-500 p-5 min-h-screen">
-        <div class="bg-slate-950 min-h-screen">content</div>
+        <div class="bg-slate-950 min-h-screen"><RouterView /></div>
       </div>
     </div>
     <!-- footer -->
