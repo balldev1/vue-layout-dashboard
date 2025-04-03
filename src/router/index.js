@@ -3,6 +3,8 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
 import NotFound from "../views/NotFound.vue";
+import axios from "axios";
+
 // Define routes
 const routes = [
   {
@@ -37,33 +39,30 @@ const router = createRouter({
   routes,
 });
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 // เพิ่ม Global Navigation Guard
 router.beforeEach(async (to, from, next) => {
-  // ถ้าหน้า route ต้องการการยืนยันตัวตน
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     try {
-      // ตรวจสอบว่า cookie JWT มีอยู่หรือไม่
       const response = await axios.get(
-        "http://localhost:5000/api/protected/profile",
+        `${import.meta.env.VITE_API_BASE_URL}/profile`, // เรียก API เพื่อตรวจสอบ JWT
         {
-          withCredentials: true, // ส่ง cookie JWT
+          withCredentials: true,
         }
       );
 
-      if (response.data.user) {
-        // ถ้ามีข้อมูลผู้ใช้, ให้ไปที่หน้า destination
+      // ตรวจสอบว่า response.ok เป็น true หรือไม่
+      if (response.status === 200) {
+        // ถ้าสถานะเป็น 200 OK
         next();
-      } else {
-        // ถ้าไม่มี JWT หรือไม่ได้รับอนุญาต, ไปที่หน้า login
-        next("/login");
       }
     } catch (error) {
       console.error("ไม่สามารถตรวจสอบข้อมูลโปรไฟล์ได้", error);
       next("/login"); // หากไม่สามารถเชื่อมต่อหรือเกิด error, ไปที่หน้า login
     }
   } else {
-    // ถ้าไม่ต้องการการยืนยันตัวตน, ให้ไปหน้าต่อไป
-    next();
+    next(); // ถ้าไม่ต้องการการยืนยันตัวตน, ไปที่หน้าต่อไป
   }
 });
 
