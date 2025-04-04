@@ -27,14 +27,14 @@
         <!-- upload -->
         <div class="flex items-center justify-center relative">
           <button
-            class="absolute hover:cursor-pointer top-[-10px] right-22 upp rounded-sm shadow-sm shadow-zinc-400 border-none px-2 bg-red-600 flex items-center justify-center"
+            class="absolute hover:cursor-pointer top-[-10px] right-36 uppercase rounded-sm px-2 border-2 bg-red-600 flex items-center justify-center"
           >
-            delete
+            x
           </button>
           <img
             :src="`http://localhost:5555${post.image}`"
             alt="NetworkImage"
-            class="w-64 h-64"
+            class="w-36 h-36"
           />
         </div>
         <!-- <div v-else>
