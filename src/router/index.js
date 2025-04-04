@@ -30,7 +30,7 @@ const routes = [
     path: "/network",
     name: "Network",
     component: Network,
-    meta: { requiresAuth: false }, // ไม่ต้องการการยืนยันตัวตน
+    meta: { requiresAuth: true }, // ไม่ต้องการการยืนยันตัวตน
   },
   {
     path: "/:pathMatch(.*)*",

@@ -49,7 +49,7 @@ const router = useRouter();
 const logout = async () => {
   try {
     await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/logout`,
+      `${import.meta.env.VITE_API_BASE_URL}/login`,
       {},
       { withCredentials: true } // สำคัญมากถ้าใช้ cookie สำหรับ session
     );

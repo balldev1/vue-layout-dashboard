@@ -1,5 +1,5 @@
 <template>
-  <button class="btn w-36 mx-auto" onclick="Add_Content_1.showModal()">
+  <button class="btn w-32 mx-auto" onclick="Add_Content_1.showModal()">
     Add Content
   </button>
   <dialog id="Add_Content_1" class="modal">
