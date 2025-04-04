@@ -1,8 +1,8 @@
 <template>
-  <button class="btn w-32 mx-auto" onclick="Add_Content_1.showModal()">
+  <button class="btn w-32 mx-auto" onclick="Add_Content.showModal()">
     Add Content
   </button>
-  <dialog id="Add_Content_1" class="modal">
+  <dialog id="Add_Content" class="modal">
     <div class="modal-box text-white">
       <h3 class="text-lg font-bold">Hello! What you learn Network Today</h3>
       <div class="py-4 flex flex-col gap-4">

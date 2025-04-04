@@ -3,7 +3,7 @@
   <button class="btn" @click="openModal">Edit</button>
 
   <!-- Modal -->
-  <dialog ref="modalRef" id="Add_Content_1" class="modal">
+  <dialog ref="modalRef" id="Edit_1" class="modal">
     <div class="modal-box text-white">
       <h3 class="text-lg font-bold">Hello! What you Edit Network Today</h3>
       <div class="py-4 flex flex-col gap-4">

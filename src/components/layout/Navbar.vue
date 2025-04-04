@@ -24,9 +24,7 @@
         <span>|</span>
 
         <!-- Logout -->
-        <div @click="logout" class="cursor-pointer hover:text-red-500">
-          Logout
-        </div>
+        <ModalLogOutNavbar />
       </div>
     </div>
   </div>
@@ -35,6 +33,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import axios from "axios";
+import ModalLogOutNavbar from "@/components/layout/ModalLogOutNavbar.vue";
 
 const links = [
   { name: "About", path: "/about" },
@@ -49,7 +48,7 @@ const router = useRouter();
 const logout = async () => {
   try {
     await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/login`,
+      `${import.meta.env.VITE_API_BASE_URL}/logout`,
       {},
       { withCredentials: true } // สำคัญมากถ้าใช้ cookie สำหรับ session
     );

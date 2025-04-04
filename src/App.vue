@@ -58,7 +58,7 @@ const route = useRoute(); // รับข้อมูล path ปัจจุบ
 
 const sidebarState = localStorage.getItem("isSidebarOpen");
 const isSidebarOpen = ref(
-  sidebarState !== null ? sidebarState === "true" : false
+  sidebarState !== null ? sidebarState === "true" : true
 );
 
 // ทุกครั้งที่มีการเปลี่ยนแปลง isSidebarOpen ให้ sync ไปเก็บใน localStorage
