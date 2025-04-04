@@ -34,7 +34,9 @@
       </div>
       <div class="flex items-cnter justify-end gap-2 w-full">
         <div>
-          <button @click="submitPost" class="btn bg-zinc-700">Confirm</button>
+          <button @click="handleConfirm" class="btn bg-zinc-700">
+            Confirm
+          </button>
         </div>
         <div class="modal-action">
           <form method="dialog">
@@ -54,7 +56,7 @@ const headerValue = ref("");
 const contentValue = ref("");
 const imageValue = ref(null);
 
-const submitPost = async () => {
+const handleConfirm = async () => {
   const formData = new FormData();
   formData.append("header", headerValue.value);
   formData.append("content", contentValue.value);
