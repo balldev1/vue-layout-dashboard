@@ -7,30 +7,18 @@
     }"
   >
     <div class="flex flex-col">
-      <div class="flex gap-5 shadow-sm p-4 rounded-md shadow-zinc-100">
-        <div class="flex flex-col items-center justify-center">
-          <img
-            src="/food_logo.png"
-            alt="Background Image"
-            class="w-60 h-full object-cover"
-          />
-        </div>
+      <div class="flex gap-5 shadow-sm p-4">
         <fieldset
-          class="fieldset w-xs p-5 rounded-sm bg-gradient-to-r from-zinc-100/50 to-zinc-10"
+          class="fieldset w-xs p-5 rounded-sm bg-gradient-to-r from-zinc-100/40 to-zinc-10"
         >
-          <div class="flex flex-col gap-5 items-center justify-center">
-            <h1
-              class="text-sm font-bold bg-lime-400 text-black px-2 rounded-sm shadow-zinc-950"
-            >
-              Hi Online 09.00 - 18.00
-            </h1>
+          <div class="flex flex-col items-center justify-center">
             <img
-              src="https://img.freepik.com/free-photo/anime-eyes-illustration_23-2151660527.jpg?t=st=1743655023~exp=1743658623~hmac=0b738e1572afbdd458e1602458478aaf3d4f3dec5819205fece2d4d03d6ff26c&w=2000"
-              alt="logo"
-              class="w-32 h-32 rounded-full object-cover shadow-sm shadow-gray-950"
+              src="/food_logo.png"
+              alt="Background Image"
+              class="w-full h-64 object-cover"
             />
           </div>
-          <div class="space-y-5 py-4 flex flex-col gap-3">
+          <div class="space-y-5 pb-4 flex flex-col gap-3">
             <input
               @keyup.enter="login"
               v-model="email"

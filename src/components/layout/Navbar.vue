@@ -24,13 +24,18 @@
         <span>|</span>
 
         <!-- Logout -->
-        <div class="cursor-pointer hover:text-red-500">Logout</div>
+        <div @click="logout" class="cursor-pointer hover:text-red-500">
+          Logout
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+import axios from "axios";
+
 const links = [
   { name: "About", path: "/about" },
   { name: "Docs", path: "/docs" },
@@ -38,4 +43,19 @@ const links = [
   { name: "Playground", path: "/playground" },
   { name: "Ecosystem", path: "/ecosystem" },
 ];
+
+const router = useRouter();
+
+const logout = async () => {
+  try {
+    await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/logout`,
+      {},
+      { withCredentials: true } // สำคัญมากถ้าใช้ cookie สำหรับ session
+    );
+    router.push("/login");
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+};
 </script>

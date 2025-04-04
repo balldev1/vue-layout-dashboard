@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
+import Network from "../views/Network.vue";
 import NotFound from "../views/NotFound.vue";
 import axios from "axios";
 
@@ -23,6 +24,12 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    meta: { requiresAuth: false }, // ไม่ต้องการการยืนยันตัวตน
+  },
+  {
+    path: "/network",
+    name: "Network",
+    component: Network,
     meta: { requiresAuth: false }, // ไม่ต้องการการยืนยันตัวตน
   },
   {

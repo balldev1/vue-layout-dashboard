@@ -1,25 +1,36 @@
-<script setup lang="ts">
-import { useRoute } from "vue-router"; // ใช้ useRoute เพื่อเช็ค path ปัจจุบัน
-import Navbar from "./components/layout/Navbar.vue";
-const route = useRoute(); // รับข้อมูล path ปัจจุบันจาก Vue Router
-</script>
-
 <template>
   <div v-if="route.path !== '/login'" class="text-black w-full min-h-screen">
     <!-- Navbar (Fixed) -->
-    <div class="fixed w-full top-0 z-50">
+    <div class="fixed w-full top-0 z-40">
       <Navbar />
     </div>
     <!-- sizebar -->
-    <div
-      class="h-full bg-zinc-100 fixed w-40 z-40 pt-20 shadow-sm shadow-gray-500"
-    >
-      sidebar
+    <div class="relative z-50">
+      <!-- ปุ่ม Toggle -->
+      <button
+        @click="isSidebarOpen = !isSidebarOpen"
+        class="fixed top-5 left-5 bg-zinc-800 z-50 text-white px-3 py-2 rounded-md shadow"
+      >
+        {{ isSidebarOpen ? "Close" : "Open" }} Sidebar
+      </button>
+
+      <!-- Sidebar -->
+      <div
+        v-if="isSidebarOpen"
+        class="h-full bg-zinc-100 fixed w-40 pt-20 shadow-sm shadow-gray-500 transition-all duration-300"
+      >
+        <Sidebar />
+      </div>
     </div>
     <!-- content -->
-    <div class="pl-40 pt-14">
-      <div class="bg-white text-lime-500 p-5 min-h-screen">
-        <div class="bg-slate-950 min-h-screen">
+    <div
+      :class="[
+        isSidebarOpen ? 'pl-40' : 'pl-0',
+        'pt-14 transition-all duration-300',
+      ]"
+    >
+      <div class="bg-white p-5 min-h-screen">
+        <div class="bg-zinc-100 shadow-sm shadow-gray-500 min-h-screen p-5">
           <RouterView />
         </div>
       </div>
@@ -28,7 +39,7 @@ const route = useRoute(); // รับข้อมูล path ปัจจุบ
     <footer
       class="bg-zinc-100 shadow-sm shadow-gray-500 fixed bottom-0 w-full z-40 p-2 text-center"
     >
-      Copyright © 2024 - Balldev1 Co., Ltd
+      footer
     </footer>
   </div>
   <!-- login -->
@@ -36,3 +47,13 @@ const route = useRoute(); // รับข้อมูล path ปัจจุบ
     <RouterView />
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { useRoute } from "vue-router"; // ใช้ useRoute เพื่อเช็ค path ปัจจุบัน
+import Navbar from "./components/layout/Navbar.vue";
+import Sidebar from "./components/layout/Sidebar.vue";
+const route = useRoute(); // รับข้อมูล path ปัจจุบันจาก Vue Router
+
+const isSidebarOpen = ref(true);
+</script>

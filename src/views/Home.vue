@@ -1,5 +1,3 @@
 <template>
-  <div>
-    <h1>Home Page</h1>
-  </div>
+  <div class="bg-rose-500">asdasd</div>
 </template>
