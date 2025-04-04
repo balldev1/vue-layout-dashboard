@@ -20,8 +20,8 @@
             <div class="flex justify-between">
               <h3 class="font-bold">{{ post.header }}</h3>
               <div class="flex flex-col relative">
-                <div class="absolute right-[-50px]">
-                  <div>edit</div>
+                <div class="absolute right-[-5rem]">
+                  <ModalEditContent :post="post" />
                 </div>
                 <h1
                   class="px-2 py-1 bg-zinc-100 shadow-sm shadow-zinc-400 text-sm text-black"
@@ -30,6 +30,7 @@
                 </h1>
               </div>
             </div>
+
             <div>
               <p>{{ post.content }}</p>
             </div>
@@ -55,10 +56,12 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
+import ModalEditContent from "./ModalEditContent.vue";
 
 const route = useRoute();
 const posts = ref([]);
