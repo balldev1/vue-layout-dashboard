@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-zinc-100 shadow-sm shadow-gray-500 p-5">
+  <div class="w-full bg-zinc-100 shadow-sm shadow-gray-500 py-2 pr-5">
     <div class="flex items-center justify-between">
       <!-- Home Link -->
       <RouterLink to="/" class="hover:text-lime-500 font-semibold">

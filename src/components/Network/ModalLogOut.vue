@@ -1,7 +1,5 @@
 <template>
-  <button class="btn w-32 mx-auto" onclick="Logout_1.showModal()">
-    Log out
-  </button>
+  <button class="btn mx-auto" onclick="Logout_1.showModal()">Log out</button>
   <dialog id="Logout_1" class="modal">
     <div
       class="modal-box text-white text-center flex flex-col items-center justify-center gap-5 bg-zinc-500/10 w-96"

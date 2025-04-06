@@ -9,9 +9,9 @@
       <!-- ปุ่ม Toggle -->
       <button
         @click="isSidebarOpen = !isSidebarOpen"
-        class="fixed top-5 left-5 bg-zinc-800 z-50 w-32 text-white px-3 py-2 rounded-md shadow"
+        class="fixed top-5 left-5 bg-zinc-800 z-50 text-white rounded-md shadow btn"
       >
-        {{ isSidebarOpen ? "Close" : "Open" }} Sidebar
+        {{ isSidebarOpen ? "Close" : "Open" }}
       </button>
 
       <!-- Sidebar -->

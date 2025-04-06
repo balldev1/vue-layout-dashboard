@@ -2,11 +2,18 @@
   <div class="flex flex-col">
     <div
       :class="[
-        isSidebarOpen ? 'pl-0' : 'pl-34',
+        isSidebarOpen ? 'pl-0 ' : 'pl-34',
         'transition-all duration-300 flex',
       ]"
     >
-      <ModalAddContent />
+      <div
+        :class="[
+          isSidebarOpen ? 'pt-5 ' : 'pt-0',
+          'transition-all duration-300 flex',
+        ]"
+      >
+        <ModalAddContent />
+      </div>
       <div
         v-if="!isSidebarOpen"
         class="w-full ml-auto flex justify-end items-center transition-all duration-300"
@@ -14,7 +21,14 @@
         <ModalLogOut />
       </div>
     </div>
-    <ContentNetwork />
+    <div
+      :class="[
+        isSidebarOpen ? 'pt-10' : 'pt-5 ',
+        'transition-all duration-300  flex items-center justify-center ',
+      ]"
+    >
+      <ContentNetwork />
+    </div>
   </div>
 </template>
 
