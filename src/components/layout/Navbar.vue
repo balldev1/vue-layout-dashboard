@@ -19,10 +19,11 @@
             {{ link.name }}
           </RouterLink>
         </div>
-
         <!-- Divider -->
         <span>|</span>
-
+        ?
+        <!-- Divider -->
+        <span>|</span>
         <!-- Logout -->
         <ModalLogOutNavbar />
       </div>
@@ -31,10 +32,7 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import axios from "axios";
 import ModalLogOutNavbar from "@/components/layout/ModalLogOutNavbar.vue";
-
 const links = [
   { name: "About", path: "/about" },
   { name: "Docs", path: "/docs" },
@@ -42,19 +40,4 @@ const links = [
   { name: "Playground", path: "/playground" },
   { name: "Ecosystem", path: "/ecosystem" },
 ];
-
-const router = useRouter();
-
-const logout = async () => {
-  try {
-    await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/logout`,
-      {},
-      { withCredentials: true } // สำคัญมากถ้าใช้ cookie สำหรับ session
-    );
-    router.push("/login");
-  } catch (error) {
-    console.error("Logout failed:", error);
-  }
-};
 </script>

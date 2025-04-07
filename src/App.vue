@@ -1,5 +1,8 @@
 <template>
-  <div v-if="route.path !== '/login'" class="text-black w-full min-h-screen">
+  <div
+    v-if="route.path !== '/login' && user"
+    class="text-black w-full min-h-screen"
+  >
     <!-- Navbar (Fixed) -->
     <div v-if="isSidebarOpen" class="fixed w-full top-0 z-40">
       <Navbar />
@@ -13,7 +16,6 @@
       >
         {{ isSidebarOpen ? "Close" : "Open" }}
       </button>
-
       <!-- Sidebar -->
       <div
         v-if="isSidebarOpen"
@@ -50,8 +52,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRoute } from "vue-router"; // ใช้ useRoute เพื่อเช็ค path ปัจจุบัน
+import axios from "axios";
 import Navbar from "./components/layout/Navbar.vue";
 import Sidebar from "./components/layout/Sidebar.vue";
 const route = useRoute(); // รับข้อมูล path ปัจจุบันจาก Vue Router
@@ -60,6 +63,29 @@ const sidebarState = localStorage.getItem("isSidebarOpen");
 const isSidebarOpen = ref(
   sidebarState !== null ? sidebarState === "true" : true
 );
+
+// สร้างตัวแปรที่จะเก็บข้อมูล user
+const user = ref(null);
+// ฟังก์ชันในการดึงข้อมูลจาก API
+const fetchProfile = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/profile`,
+      {
+        withCredentials: true,
+      }
+    );
+    user.value = response.data.user; // กำหนดค่าให้ user
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+  }
+};
+console.log(user);
+
+// ดึงข้อมูลเมื่อ component ถูก mount
+onMounted(() => {
+  fetchProfile();
+});
 
 // ทุกครั้งที่มีการเปลี่ยนแปลง isSidebarOpen ให้ sync ไปเก็บใน localStorage
 watch(isSidebarOpen, (newVal) => {

@@ -31,6 +31,8 @@
 <script setup>
 import axios from "axios";
 import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
+
 const router = useRouter();
 
 const handleLogout = async () => {
@@ -40,8 +42,24 @@ const handleLogout = async () => {
       {},
       { withCredentials: true }
     );
+
+    // ✅ แจ้งเตือน logout สำเร็จ
+    Swal.fire({
+      icon: "success",
+      title: "ออกจากระบบสำเร็จ",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
     router.push("/login");
   } catch (error) {
+    // ❌ แจ้งเตือน logout ล้มเหลว
+    Swal.fire({
+      icon: "error",
+      title: "เกิดข้อผิดพลาด",
+      text: "ไม่สามารถออกจากระบบได้ กรุณาลองใหม่",
+    });
+
     console.error("Logout failed:", error);
   }
 };
