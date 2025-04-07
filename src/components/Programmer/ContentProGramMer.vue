@@ -44,7 +44,7 @@
               >
                 <img
                   :src="`http://localhost:5555${post.image}`"
-                  alt="NetworkImage"
+                  alt="ProgrammerImage"
                   class="w-96 h-96"
                 />
               </div>
@@ -74,7 +74,9 @@ const isLoading = ref(true);
 const fetchPosts = async () => {
   try {
     isLoading.value = true;
-    const response = await axios.get("http://localhost:5555/api/auth/network");
+    const response = await axios.get(
+      "http://localhost:5555/api/auth/programmer"
+    );
     posts.value = response.data;
   } catch (error) {
     console.error("Error fetching posts:", error);
