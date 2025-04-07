@@ -20,14 +20,14 @@
           </div>
           <div class="space-y-5 pb-4 flex flex-col gap-3">
             <input
-              @keyup.enter="login"
+              @keyup.enter="Handlelogin"
               v-model="email"
               type="email"
               class="input bg-white text-zinc-950 placeholder:text-sm shadow-sm shadow-zinc-950 focus:outline-none focus:shadow-sm focus:shadow-zinc-950"
               placeholder="Email"
             />
             <input
-              @keyup.enter="login"
+              @keyup.enter="Handlelogin"
               v-model="password"
               type="password"
               class="input bg-white text-zinc-950 placeholder:text-sm shadow-sm shadow-zinc-950 focus:outline-none focus:shadow-sm focus:shadow-zinc-950"
@@ -35,7 +35,7 @@
             />
           </div>
           <button
-            @click="login"
+            @click="Handlelogin"
             class="btn bg-gradient-to-r from-sky-950 to-sky-900 border-none rounded-sm shadow-sm shadow-zinc-100 uppercase"
           >
             Login
@@ -50,13 +50,29 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import Swal from "sweetalert2";
 const email = ref("");
 const password = ref("");
 const router = useRouter();
 
-// ดึงค่าจาก .env
+// เพิ่มตัวแปรนับรอบผิด
+const loginAttempts = ref(0);
+const lockUntil = ref(null);
 
-const login = async () => {
+const Handlelogin = async () => {
+  const now = new Date();
+
+  // 🔒 ถ้ายังไม่หมดเวลา lock
+  if (lockUntil.value && now < lockUntil.value) {
+    const secondsLeft = Math.ceil((lockUntil.value - now) / 1000);
+    Swal.fire({
+      icon: "warning",
+      title: "ถูกล็อคชั่วคราว",
+      text: `กรุณารออีก ${secondsLeft} วินาที แล้วลองใหม่`,
+    });
+    return;
+  }
+
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_API_BASE_URL}/login`,
@@ -66,20 +82,46 @@ const login = async () => {
       },
       { withCredentials: true }
     );
+
+    // ✅ สำเร็จ
+    loginAttempts.value = 0;
+    lockUntil.value = null;
+
+    Swal.fire({
+      icon: "success",
+      title: "เข้าสู่ระบบสำเร็จ",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
     router.push("/");
   } catch (error) {
-    console.error(
-      "Login Failed:",
-      error.response?.data?.message || error.message
-    );
-    errorMessage.value = error.response?.data?.message || "Login failed!";
+    // ❌ ล้มเหลว
+    loginAttempts.value++;
+
+    const attemptsLeft = 3 - loginAttempts.value;
+
+    if (loginAttempts.value >= 3) {
+      lockUntil.value = new Date(Date.now() + 60 * 1000); // ล็อค 1 นาที
+      Swal.fire({
+        icon: "error",
+        title: "ล็อคระบบ!",
+        text: "คุณกรอกรหัสผิดเกิน 3 ครั้ง กรุณารอ 1 นาทีแล้วลองใหม่",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "เข้าสู่ระบบล้มเหลว",
+        html: `คุณกรอกรหัสผิดไปแล้ว <b>${loginAttempts.value}</b> ครั้ง<br>เหลืออีก <b>${attemptsLeft}</b> ครั้งก่อนระบบจะล็อค 1 นาที`,
+      });
+    }
   }
 };
 
 onMounted(async () => {
   try {
     const response = await axios.get(
-      `${import.meta.env.VITE_API_BASE_URL}/profile`, // เรียก API เพื่อตรวจสอบ JWT
+      `${import.meta.env.VITE_API_BASE_URL}/profile`,
       {
         withCredentials: true,
       }
