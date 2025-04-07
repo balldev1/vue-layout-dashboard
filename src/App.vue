@@ -1,11 +1,8 @@
 <template>
-  <div
-    v-if="route.path !== '/login' && user"
-    class="text-black w-full min-h-screen"
-  >
+  <div v-if="route.path !== '/login'" class="text-black w-full min-h-screen">
     <!-- Navbar (Fixed) -->
     <div v-if="isSidebarOpen" class="fixed w-full top-0 z-40">
-      <Navbar />
+      <Navbar :user="user" />
     </div>
     <!-- sizebar -->
     <div class="relative z-50">
@@ -46,7 +43,7 @@
     </footer>
   </div>
   <!-- login -->
-  <div v-else>
+  <div v-if="route.path === '/login'">
     <RouterView />
   </div>
 </template>

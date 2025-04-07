@@ -21,7 +21,8 @@
         </div>
         <!-- Divider -->
         <span>|</span>
-        ?
+        <p v-if="user">Welcome, {{ user.username }}!</p>
+        <p v-else>Please log in</p>
         <!-- Divider -->
         <span>|</span>
         <!-- Logout -->
@@ -32,6 +33,13 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+});
+
 import ModalLogOutNavbar from "@/components/layout/ModalLogOutNavbar.vue";
 const links = [
   { name: "About", path: "/about" },
