@@ -82,11 +82,12 @@
               </div>
             </div>
           </div>
-
-          <div
-            class="text-sm px-2 mt-10 bg-white rounded-full h-8 w-8 shadow-sm shadow-gray-950 flex items-center justify-center"
-          >
-            <span> ⇄ </span>
+          <div class="pt-6">
+            <div
+              class="text-sm px-2 mt-10 bg-white rounded-full h-8 w-8 shadow-sm shadow-gray-950 flex items-center justify-center"
+            >
+              <span> ⇄ </span>
+            </div>
           </div>
 
           <div class="flex-col flex gap-2">
