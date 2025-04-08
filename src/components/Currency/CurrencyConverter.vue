@@ -15,7 +15,7 @@
         </div>
         <button
           @click="currencyStore.updateRate"
-          class="bg-gradient-to-t from-orange-500 to-orange-300 border-none btn rounded-m text-white px-4 p-2 shadow-sm shadow-zinc-300 text-sm"
+          class="bg-gradient-to-t from-orange-500 to-orange-300 border-none btn rounded-m text-white px-4 p-2 shadow-sm shadow-zinc-300 text-sm hover:opacity-90"
         >
           🔄 Update Rate
         </button>
@@ -35,6 +35,9 @@
             </div>
             <div class="absolute z-50 right-1 bg-white">
               <Dropdown
+                pt:trigger="!pr-2 !w-5 "
+                pt:filterinput=" !h-10 "
+                pt:filtericon="!top-3"
                 v-model="currencyStore.fromCurrency"
                 :options="currencyStore.currencies"
                 optionLabel="label"
@@ -95,6 +98,9 @@
             </div>
             <div class="absolute z-50 right-2 bg-white">
               <Dropdown
+                pt:trigger="!pr-2 !w-5 "
+                pt:filterinput=" !h-10 "
+                pt:filtericon="!top-3"
                 v-model="currencyStore.toCurrency"
                 :options="currencyStore.currencies"
                 optionLabel="value"
@@ -150,3 +156,9 @@ import Dropdown from "primevue/dropdown";
 
 const currencyStore = useCurrencyStore();
 </script>
+
+<style scoped>
+/* .p-dropdown {
+  background-color: var(--primary-color);
+} */
+</style>
