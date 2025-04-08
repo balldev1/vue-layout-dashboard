@@ -22,5 +22,6 @@ const menu = [
   { name: "About", path: "/about" },
   { name: "Network", path: "/network" },
   { name: "Programmer", path: "/programmer" },
+  { name: "Currency", path: "/currency" },
 ];
 </script>

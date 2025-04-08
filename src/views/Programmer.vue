@@ -40,7 +40,7 @@ defineProps({
   },
 });
 
-import ModalAddContent from "@/components/ProGramMer/ModalAddContent.vue";
-import ModalLogOut from "@/components/ProGramMer/ModalLogOut.vue";
-import ContentProGramMer from "@/components/ProGramMer/ContentProGramMer.vue";
+import ModalAddContent from "@/components/Programmer/ModalAddContent.vue";
+import ModalLogOut from "@/components/Programmer/ModalLogOut.vue";
+import ContentProGramMer from "@/components/Programmer/ContentProGramMer.vue";
 </script>

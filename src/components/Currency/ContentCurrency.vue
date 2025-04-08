@@ -6,11 +6,13 @@
     <div
       class="border-b-[1px] border-zinc-200 flex items-center justify-center"
     ></div>
+    <CurrencyConverter />
   </div>
 </template>
 
 <script setup>
 import { useRoute } from "vue-router";
+import CurrencyConverter from "./CurrencyConverter.vue";
 
 const route = useRoute();
 </script>

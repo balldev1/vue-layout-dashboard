@@ -4,6 +4,7 @@ import About from "../views/About.vue";
 import Login from "../views/Login.vue";
 import Network from "../views/Network.vue";
 import Programmer from "../views/Programmer.vue";
+import Currency from "../views/Currency.vue";
 import NotFound from "../views/NotFound.vue";
 import axios from "axios";
 
@@ -37,6 +38,12 @@ const routes = [
     path: "/programmer",
     name: "programmer",
     component: Programmer,
+    meta: { requiresAuth: true }, // ไม่ต้องการการยืนยันตัวตน
+  },
+  {
+    path: "/currency",
+    name: "currency",
+    component: Currency,
     meta: { requiresAuth: true }, // ไม่ต้องการการยืนยันตัวตน
   },
   {

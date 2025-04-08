@@ -6,9 +6,6 @@
         'transition-all duration-300 flex',
       ]"
     >
-      <div class="transition-all duration-300 flex">
-        <!-- <ModalAddContent /> -->
-      </div>
       <div
         v-if="!isSidebarOpen"
         class="w-full ml-auto flex justify-end items-center transition-all duration-300"
@@ -16,7 +13,7 @@
         <ModalLogOut />
       </div>
     </div>
-    <ContentHome />
+    <ContentCurrency />
   </div>
 </template>
 
@@ -28,7 +25,6 @@ defineProps({
   },
 });
 
-import ModalAddContent from "@/components/Network/ModalAddContent.vue";
 import ModalLogOut from "@/components/Network/ModalLogOut.vue";
-import ContentHome from "@/components/Home/ContentHome.vue";
+import ContentCurrency from "@/components/Currency/ContentCurrency.vue";
 </script>

@@ -62,7 +62,7 @@ const isSidebarOpen = ref(
 );
 
 // สร้างตัวแปรที่จะเก็บข้อมูล user
-const user = ref(null);
+const user = ref<any>(null);
 // ฟังก์ชันในการดึงข้อมูลจาก API
 const fetchProfile = async () => {
   try {
